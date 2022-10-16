@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useState } from "react";
+import "./App.css";
+import Foods from "./Foods";
 
 function App() {
+  const [food, setFood] = useState('');
+
+    function fetchDesertHandler() {
+      setFood(`https://foodish-api.herokuapp.com/images/dessert/dessert${Math.floor(Math.random() * 36)}.jpg`);
+    }
+    function fetchPizzaHandler() {
+      setFood(`https://foodish-api.herokuapp.com/images/pizza/pizza${Math.floor(Math.random() * 36)}.jpg`);
+    }
+    function fetchPastaHandler() {
+      setFood(`https://foodish-api.herokuapp.com/images/pasta/pasta${Math.floor(Math.random() * 36)}.jpg`);
+    }
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Foods foodImg={food} />
+      <button onClick={fetchDesertHandler}>Desert</button>
+      <button onClick={fetchPizzaHandler}>Pizza</button>
+      <button onClick={fetchPastaHandler}>Pasta</button>
+    </Fragment>
   );
 }
 
